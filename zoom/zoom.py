@@ -55,7 +55,6 @@ def start_and_write():
         zooms=gw.getWindowsWithTitle('Zoom Meeting')
     handle = zooms[0]
     handle.activate()
-    handle.maximize()
     pyautogui.hotkey('alt', 'h')
     for char in args[3]:
         pyautogui.press(char)
