@@ -15,12 +15,12 @@ For gui:
 For cli:
 `zoom [options]`
 ### Options
-*-s [name]* for starting meeting\\ 
-*-a [name] [value]* for adding link\\   
-*-d [name]* for deleting link \\  
-*-r* for reading all links\\  
-*-h*  for help \\
-*-c [name] [time]*  for adding cron to start you meeting\\
+*-s [name]* for starting meeting\
+*-a [name] [value]* for adding link\  
+*-d [name]* for deleting link \ 
+*-r* for reading all links\
+*-h*  for help \
+*-c [name] [time]*  for adding cron to start you meeting\
 *-sw [name] "[value]"* for writting your value in zoom chat
 
    
