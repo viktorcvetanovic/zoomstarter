@@ -14,6 +14,16 @@ For gui:
 `zoomgui`
 For cli:
 `zoom [options]`
+### Options
+*-s [name]* for starting meeting\\ 
+*-a [name] [value]* for adding link\\   
+*-d [name]* for deleting link \\  
+*-r* for reading all links\\  
+*-h*  for help \\
+*-c [name] [time]*  for adding cron to start you meeting\\
+*-sw [name] "[value]"* for writting your value in zoom chat
+
+   
 
 ## Support
 Zoomstarter is still in developing and only full supported  and tested system for now is Windows. You can still use some functionalities on Linux.
