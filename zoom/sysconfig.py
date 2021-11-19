@@ -14,13 +14,13 @@ def get_config(number):
     return create_config() 
 
 def create_config():
-    if os.path.isdir(folder_name)==False:
-        os.makedirs(folder_name)
-        os.chdir(folder_name)
-        with open(file_name, 'w') as f:
+    directory=os.path.join(home,folder_name)
+    if not os.path.isdir(directory):
+        os.makedirs(directory)
+        with open(os.path.join(directory,file_name), 'w') as f:
             json.dump({}, f)
     return format_location()
 
 def format_location():
-    location=home+ "/"+ folder_name+"/"+file_name
+    location=os.path.join(home,folder_name,file_name)
     return location
