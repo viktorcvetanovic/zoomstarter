@@ -140,7 +140,5 @@ def handle_input():
         else:
             raise SystemError("This is only support on Windows for now")
     elif definer == "-sw" or definer == "--startwrite":
-        if os.name == "nt":
-            start_and_write()
-        else:
-            raise SystemError("This is only supported on Windows for now")
+        start_and_write()
+  
