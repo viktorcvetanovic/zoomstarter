@@ -21,7 +21,8 @@ For cli:
 *-r* for reading all links<br />
 *-h*  for help <br />
 *-c [name] [time]*  for adding cron to start you meeting<br />
-*-sw [name] "[value]"* for writting your value in zoom chat
+*-sw [name] "[value]"* for writting your value in zoom chat<br>
+*-df* add as last parameter to load default config which you can change in data folder before install
 
    
 
