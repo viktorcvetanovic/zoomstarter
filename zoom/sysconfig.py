@@ -24,3 +24,7 @@ def create_config():
 def format_location():
     location=os.path.join(home,folder_name,file_name)
     return location
+
+
+def execute_command(command):
+    os.system(command)

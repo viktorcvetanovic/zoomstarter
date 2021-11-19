@@ -9,6 +9,14 @@ default_config=None
 args = sys.argv
 data=None
 
+def get_data():
+    global data
+    global default_config
+    if data is None:
+        default_config=get_config(1)
+        load_json_config()
+    return data
+
 def add_link():
     if args[2] is None or args[3] is None:
         raise ValueError("You need to define key and value to add a link")
@@ -29,7 +37,7 @@ def load_json_config():
     global data
     try:
         with open(default_config, 'r') as f:
-             data=json.load(f)
+            data=json.load(f)
     except EnvironmentError:
         raise FileNotFoundError("Please add config.json in this path: " + default_config)
 
@@ -123,6 +131,8 @@ def handle_input():
         default_config=get_config(1)
         args=args[:-1]
     load_json_config()
+    if len(args)<2:
+        return
     definer = args[1]
     if definer == "-s" or definer == "--start":
         start_zoom()
