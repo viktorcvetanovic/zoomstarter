@@ -27,5 +27,6 @@ For cli:
 
 ## Support
 Zoomstarter is still in developing and only full supported  and tested system for now is Windows. You can still use some functionalities on Linux.
+If you have problem with starting script on nix sistems, try to install tkinter library with your default package manager.
 
 
