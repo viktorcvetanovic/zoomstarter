@@ -11,9 +11,9 @@ Only required program for starting this is python latest version.
 First you need to run `python setup.py install` and python will handle everything for you. After that you sucessfully installed zoomstarter!
 If you want to run it open your favorite terminal and type:
 For gui:
-`zoomgui`
+`zoomstartergui`
 For cli:
-`zoom [options]`
+`zoomstarter [options]`
 ### Options
 *-s [name]* for starting meeting<br />
 *-a [name] [value]* for adding link <br />
