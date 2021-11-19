@@ -16,7 +16,7 @@ setup(
     description='Zoom app starter',
     install_requires=install_reqs,
     entry_points={
-        "console_scripts": ["zoom=zoom.main:main","zoomgui=zoom.main_gui:main"]
+        "console_scripts": ["zoomstarter=zoom.main:main","zoomstartergui=zoom.main_gui:main"]
 
     }
 )
