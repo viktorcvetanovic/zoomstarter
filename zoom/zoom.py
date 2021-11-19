@@ -3,9 +3,9 @@ import os
 import sys
 import time
 import webbrowser
-import pkg_resources
+from zoom.sysconfig import *
 
-config_file = pkg_resources.resource_filename("zoom","data/config.json")
+default_config=None
 args = sys.argv
 data=None
 
@@ -13,7 +13,7 @@ def add_link():
     if args[2] is None or args[3] is None:
         raise ValueError("You need to define key and value to add a link")
     data[args[2]] = args[3]
-    with open(config_file, 'w') as f:
+    with open(default_config, 'w') as f:
         json.dump(data, f)
 
 
@@ -21,17 +21,17 @@ def remove_link():
     if args[2] is None:
         raise ValueError("You need to define key and value to add a link")
     del data[args[2]]
-    with open(config_file, 'w') as f:
+    with open(default_config, 'w') as f:
         json.dump(data, f)
 
 
 def load_json_config():
     global data
     try:
-        with open(config_file, 'r') as f:
+        with open(default_config, 'r') as f:
              data=json.load(f)
     except EnvironmentError:
-        raise FileNotFoundError("Please add config.json in this path: " + config_file)
+        raise FileNotFoundError("Please add config.json in this path: " + default_config)
 
 
 def start_zoom():
@@ -116,6 +116,12 @@ def create_task():
 
 
 def handle_input():
+    global default_config
+    global args
+    default_config=get_config(0)
+    if args[-1]=="-df":
+        default_config=get_config(1)
+        args=args[:-1]
     load_json_config()
     definer = args[1]
     if definer == "-s" or definer == "--start":
