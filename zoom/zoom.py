@@ -55,14 +55,15 @@ def start_and_write():
     start_zoom()
     if args[3] is None:
         raise ValueError("Please enter your name")
-    time.sleep(10)
     import pygetwindow as gw
     import pyautogui
     zooms=gw.getWindowsWithTitle('Zoom Meeting')
     while len(zooms)<1:
         zooms=gw.getWindowsWithTitle('Zoom Meeting')
+    time.sleep(2)    
     handle = zooms[0]
-    handle.activate()
+    handle.activate() 
+    handle.maximize()
     pyautogui.hotkey('alt', 'h')
     for char in args[3]:
         pyautogui.press(char)
@@ -86,14 +87,16 @@ def print_config():
 def create_task():
     import datetime
     import win32com.client
-
+    global args
     scheduler = win32com.client.Dispatch('Schedule.Service')
     scheduler.Connect()
     root_folder = scheduler.GetFolder('\\')
     task_def = scheduler.NewTask(0)
 
     # Create trigger
-    start_time = datetime.datetime.now() + datetime.timedelta(minutes=float(args[3]))
+
+    start_time = datetime.datetime.now() + datetime.timedelta(minutes=float(args[-1]))
+    args=args[:-1]
     TASK_TRIGGER_TIME = 1
     trigger = task_def.Triggers.Create(TASK_TRIGGER_TIME)
     trigger.StartBoundary = start_time.isoformat()
@@ -103,7 +106,7 @@ def create_task():
     action = task_def.Actions.Create(TASK_ACTION_EXEC)
     action.ID = 'zoom'
     action.Path = args[0]
-    action.Arguments = "-s "+args[2]
+    action.Arguments = " ".join(args)
 
     # Set parameters
     task_def.RegistrationInfo.Description = 'Task for starting zoom meetings'
@@ -121,6 +124,12 @@ def create_task():
         '',  # No user
         '',  # No password
         TASK_LOGON_NONE)
+
+# def create_task_linux():
+#     cron = CronTab()
+#     job = cron.new(command='zoomstarter -s '+args[2])
+#     job.minute.every(args[3])
+
 
 
 def handle_input():
@@ -145,10 +154,12 @@ def handle_input():
     elif definer == "-h" or definer == "--help":
         raise ValueError("Not implemented")
     elif definer == "-c" or definer == "--cron":
+        del args[1]
         if os.name == "nt":
             create_task()
         else:
-            raise SystemError("This is only support on Windows for now")
+            raise SystemError("Not implemented on linux")
     elif definer == "-sw" or definer == "--startwrite":
         start_and_write()
+    
   

@@ -1,2 +1,6 @@
 pyautogui
 tk
+python-crontab
+SpeechRecognition
+pyaudio
+wave
