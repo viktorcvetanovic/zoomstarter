@@ -1,8 +1,11 @@
-import zoom
+from classes.impl.delegate import Delegate
+from classes.pparser import PParser
 
 def main():
-   # zoom.open_gui()
-   zoom.handle_input()
+   parser=PParser()
+   delegate=Delegate(parser=parser)
+   delegate.delegate()   
+   
    
 
 if __name__ == "__main__":

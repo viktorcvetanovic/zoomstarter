@@ -1,5 +1,5 @@
 import tkinter as tk
-from zoom.sysconfig import *
+from util.sysconfig import *
 import zoom
 clicked=None
 add_name=None
