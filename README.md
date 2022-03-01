@@ -8,15 +8,17 @@ Initially this was a bash script for starting zoom meetings, but as i started de
 Only required program for starting this is python latest version.
 
 ## Guide
-* Nix and Windows system 
+* Nix and Windows system </br>
 First you need to run `python setup.py install` and python will handle everything for you. After that you sucessfully installed zoomstarter!
 If you want to run it open your favorite terminal and type:
-For gui:
-`zoomstartergui`
-For cli:
-`zoomstarter [options]`
-* Windows only
+* Windows only<br/>
 You can run just install.exe and everything will work as charm.
+## Starting app
+For gui:<br>
+`zoomstartergui`<br>
+For cli:<br>
+`zoomstarter [options]`<br>
+* If you use install.exe you will have exe file on desktop which start<br>
 ### Options
 *-s [name]* for starting meeting<br />
 *-a [name] [value]* for adding link <br />
