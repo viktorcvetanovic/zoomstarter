@@ -4,7 +4,7 @@ import pkg_resources
 import json
 
 file_name="config.json"
-folder_name="zoomstarter_config"
+folder_name=".zoomstarter"
 default_config = pkg_resources.resource_filename("zoom","data/"+file_name)
 home = str(Path.home())
 
