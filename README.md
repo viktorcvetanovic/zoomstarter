@@ -27,8 +27,6 @@ You can run just install.exe and everything will work as charm.
 *-sw [name] "[value]"* for writting your value in zoom chat<br>
 *-df* add as last parameter to load default config which you can change in data folder before install
 
-   
-
 ## Support
 Zoomstarter is still in developing and only full supported  and tested system for now is Windows. You can still use some functionalities on Linux.
 If you have problem with starting script on nix sistems, try to install tkinter library with your default package manager.
