@@ -1,10 +1,11 @@
-from classes.impl.delegate import Delegate
-from classes.pparser import PParser
+from zoom.classes.impl import Delegate
+from zoom.classes.impl import PParser
 
 def main():
    parser=PParser()
    delegate=Delegate(parser=parser)
    delegate.delegate()   
+   
    
    
 

@@ -1,5 +1,5 @@
 import argparse
-from classes.argument import Argument
+from zoom.classes import Argument
 
 class PParser:
     parser = argparse.ArgumentParser()
@@ -9,30 +9,35 @@ class PParser:
                 "flag":"-s",
                 "action":"store",
                 "type":str,
+                "nargs":1,
                 "help":"flag for starting zoom meetings"
             },
             "add":{
                 "flag":"-a",
                 "action":"store",
                 "type":str,
+                "nargs":2,
                 "help":"flag for adding zoom meetings links"
             },
             "delete":{
                 "flag":"-d",
                 "action":"store",
                 "type":str,
+                "nargs":1,
                 "help":"flag for deleting zoom meetings links"
             },
             "read":{
                 "flag":"-r",
                 "action":"store",
                 "type":str,
+                "nargs":'*',
                 "help":"flag for reading zoom meetings links, you can read specific link by entering his name"
             },
             "start_write":{
                 "flag":"-sw",
                 "action":"store",
                 "type":str,
+                "nargs":2,
                 "help":"flag for starting and writing some text in meetings"
             }
 
@@ -42,6 +47,7 @@ class PParser:
                 "flag":"-c",
                 "action":"store",
                 "type":int,
+                "nargs":1,
                 "help":"flag for adding cron to start your meetings"
                 }
         }
@@ -54,7 +60,7 @@ class PParser:
             gr=self.parser.add_mutually_exclusive_group()
             for arg in group:
                 obj=self.defined_groups[i][arg]
-                gr.add_argument(obj["flag"],action=obj["action"],type=obj["type"],help=obj["help"])
+                gr.add_argument(obj["flag"],action=obj["action"],type=obj["type"],help=obj["help"],nargs=obj["nargs"])
 
     def __parse__(self)-> object:
         self.parsed_data=self.parser.parse_args()   

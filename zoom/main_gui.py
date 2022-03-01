@@ -1,7 +1,6 @@
-import zoom
-
+from zoom.gui.gui import open_gui
 def main():
-   zoom.open_gui()
+   open_gui()
    
    
 if __name__ == "__main__":

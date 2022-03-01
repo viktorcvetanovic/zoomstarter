@@ -1,4 +1,5 @@
-from classes.pparser import PParser
+from zoom.classes.impl.pparser import PParser
+from zoom.classes.impl.worker import Worker
 
 class Delegate:
 
@@ -8,8 +9,8 @@ class Delegate:
 
     def delegate(self):
         data=self.parser.read_parse()
-        for val in data:
-            print(val)
+        worker=Worker(data)
+        worker.do()
         
                 
         

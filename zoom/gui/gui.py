@@ -1,18 +1,37 @@
+from ast import arg
 import tkinter as tk
-from util.sysconfig import *
-import zoom
-clicked=None
-add_name=None
-add_value=None
+from zoom.util.sysconfig import *
+from zoom.classes.impl import Worker
+from zoom.classes import Argument
+
+def update_list():
+    list=[]
+    data=get_data()
+    for key in data.keys():
+        list.append(key)
+    return list
+
+def get_data():
+    try:
+        with open(get_config(0), 'r') as f:
+            data=json.load(f)
+            return data
+    except EnvironmentError:
+        raise FileNotFoundError("Please add config.json in this path: " + get_config(0))
+  
+
+window = tk.Tk()
+worker=Worker(None)
+list=update_list()
+options = tk.StringVar(window)
+options.set(list[0])
+w = tk.OptionMenu(window,options,*list)
+textBox=tk.Text(window, height=1, width=10)
+textBox2=tk.Text(window, height=1, width=30)
+
 
 def open_gui():
-    global clicked
-    global add_name
-    global add_name
-
-    data=zoom.get_data()
-    list=getList(data)
-    window = tk.Tk()
+    
     window.title('Zoom starter')
     window.geometry("500x500")
     greeting = tk.Label(text="ZOOM STARTER")
@@ -22,9 +41,9 @@ def open_gui():
 
     message_add= tk.Label(text="Add new link for your script")
     message_add.place(x=180,y=100)
-    textBox=tk.Text(window, height=1, width=10)
+    
     textBox.place(x=50,y=150)
-    textBox2=tk.Text(window, height=1, width=30)
+    
     textBox2.place(x=150,y=150)
 
     button_add = tk.Button(
@@ -35,11 +54,17 @@ def open_gui():
         fg="yellow",
         command=add,  
     )
-    button_add.place(x=200,y=200)
+    button_add.place(x=100,y=200)
+    button_remove = tk.Button(
+        text="Remove",
+        width=10,
+        height=3,
+        bg="blue",
+        fg="yellow",
+        command=remove,  
+    )
+    button_remove.place(x=300,y=200)
 
-    clicked=tk.StringVar()
-    clicked.set(list[0])
-    w = tk.OptionMenu(window,clicked,*list)
     w.place(x=200,y=320)
     button_start = tk.Button(
         text="Start",
@@ -57,15 +82,27 @@ def open_gui():
     
 
 def start():
-    execute_command("zoomstarter -s "+clicked.get()+" -df")
-
+    argument=Argument("s",[options.get()])
+    worker.start_link(argument=argument)
+    
 def add():
-    execute_command("zoomstarter -a "+add_name+" "+add_value)    
+    name=textBox.get("1.0",'end-1c')
+    value=textBox2.get("1.0",'end-1c')
+    argument=Argument("a",[name,value])
+    worker.add_link(argument=argument)
+    update_dropdown()
+
+def remove():
+    name=textBox.get("1.0",'end-1c')
+    argument=Argument("d",[name])
+    worker.remove_link(argument=argument)
+    update_dropdown()
 
 
-def getList(dict):
-    list = []
-    for key in dict.keys():
-        list.append(key)
-    return list    
-  
+def update_dropdown():
+    list=update_list()
+    options.set('')
+    w['menu'].delete(0, 'end')
+
+    for choice in list:
+        w['menu'].add_command(label=choice, command=tk._setit(options, choice))
