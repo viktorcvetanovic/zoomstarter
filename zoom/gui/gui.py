@@ -1,5 +1,6 @@
 from ast import arg
 import tkinter as tk
+from unicodedata import name
 from zoom.util.sysconfig import *
 from zoom.classes.impl import Worker
 from zoom.classes import Argument
@@ -28,6 +29,7 @@ options.set(list[0])
 w = tk.OptionMenu(window,options,*list)
 textBox=tk.Text(window, height=1, width=10)
 textBox2=tk.Text(window, height=1, width=30)
+textBox3=tk.Text(window,height=1,width=30)
 
 
 def open_gui():
@@ -65,7 +67,8 @@ def open_gui():
     )
     button_remove.place(x=300,y=200)
 
-    w.place(x=200,y=320)
+    w.place(x=100,y=320)
+    textBox3.place(x=200,y=320)
     button_start = tk.Button(
         text="Start",
         width=10,
@@ -74,7 +77,16 @@ def open_gui():
         fg="yellow",
         command=start,  
     )
-    button_start.place(x=200,y=420)
+    button_start_write = tk.Button(
+            text="Start and write",
+            width=10,
+            height=3,
+            bg="blue",
+            fg="yellow",
+            command=start_and_write,  
+    )
+    button_start.place(x=100,y=420)
+    button_start_write.place(x=300,y=420)
     message= tk.Label(text="Start your zoom script")
     message.place(x=180,y=380)
     window.resizable(False, False)
@@ -98,6 +110,11 @@ def remove():
     worker.remove_link(argument=argument)
     update_dropdown()
 
+
+def start_and_write():
+    name=textBox3.get("1.0",'end-1c')
+    argument=Argument("sw",[options.get(),name])
+    worker.start_write_link(argument=argument)
 
 def update_dropdown():
     list=update_list()

@@ -11,7 +11,7 @@ def find():
 
 setup(
     name='zoomstarter',
-    version='1.0',
+    version='2.0',
     packages=["zoom","zoom.classes","zoom.gui","zoom.classes.impl","zoom.util"],
     package_data={'': ['data/config.json']},
     include_package_data=True,
