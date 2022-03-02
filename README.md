@@ -20,14 +20,24 @@ For cli:<br>
 `zoomstarter [options]`<br>
 * If you use install.exe you will have exe file on desktop which start<br>
 ### Options
-*-s [name]* for starting meeting<br />
-*-a [name] [value]* for adding link <br />
-*-d [name]* for deleting link <br /> 
-*-r* for reading all links<br />
-*-h*  for help <br />
-*-c [name] [time]*  for adding cron to start you meeting<br />
-*-sw [name] "[value]"* for writting your value in zoom chat<br>
-*-df* add as last parameter to load default config which you can change in data folder before install
+#### CLI
+* -s [name]* for starting meeting<br />
+* -a [name] [value]* for adding link <br />
+* -d [name]* for deleting link <br /> 
+* -r* for reading all links<br />
+* -h*  for help <br />
+* -c [name] [time]*  for adding cron to start you meeting<br />
+* -sw [name] "[value]"* for writting your value in zoom chat<br>
+* -df* add as last parameter to load default config which you can change in data folder before install
+
+#### GUI
+* adding link
+* removing links
+* starting apps
+* starting and writing in chat
+
+![alt text](Capture.PNG)
+
 
 ## Support
 Zoomstarter is still in developing and only full supported  and tested system for now is Windows. You can still use some functionalities on Linux.
