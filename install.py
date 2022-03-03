@@ -2,7 +2,6 @@ import os
 import shutil
 cwd = os.getcwd()
 os.system('cd '+cwd)
-os.system('winget install python')
 os.system('python setup.py install')
 os.system('echo END INSTALLATION')
 os.system("pyinstaller --onefile --icon=ico.ico runner.py")
